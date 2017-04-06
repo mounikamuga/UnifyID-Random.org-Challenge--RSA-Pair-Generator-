@@ -10,7 +10,9 @@ import java.util.Random;
 public class RsaGenerator {
 
 	public static void main(String args[]) throws IOException{
-	
+	/*
+	At this point, we are requesting the random org api 30 numbers ranging between 20 and 789 using the GET request
+	*/
 	URL url = new URL("https://www.random.org/integers/?num=30&min=20&max=789&col=1&base=10&format=plain&rnd=new");
 	HttpURLConnection http = (HttpURLConnection)url.openConnection();
 	http.setRequestMethod("GET");
@@ -19,6 +21,10 @@ public class RsaGenerator {
     int pr =0;
     int passcount =0;
     int[] pass = new int[3];
+    /* In this section, we read the output that is coming from the GET request and check for Prime numbers and then call the RSA
+    Algorithm .
+    We also generate the inputs required for running the RSA Algorithm at this point.
+    */
     while (passcount < 2 && rd.readLine()!= null) {
     	line = rd.readLine();
         pr = Integer.parseInt(line);
@@ -42,7 +48,9 @@ public class RsaGenerator {
     RSA_Implementation rsaI = new RSA_Implementation();
     rsaI.assignRSA(pass[0],pass[1],pass[2]);
  }
-
+/*
+Check if the input coming is a prime number or no
+*/
 	private static boolean isPrime(int pr) {		 
 	    if (pr%2==0) return false;
 	    for(int i=3;i*i<=pr;i+=2) {
