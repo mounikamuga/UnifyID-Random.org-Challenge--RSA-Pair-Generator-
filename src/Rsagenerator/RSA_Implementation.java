@@ -1,11 +1,8 @@
 package Rsagenerator;
-
-
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.math.BigInteger;
 import java.util.Random;
- 
 public class RSA_Implementation
 {
     private BigInteger p;
@@ -16,8 +13,6 @@ public class RSA_Implementation
     private BigInteger d;
     private int        bitlength = 1024;
     private Random     r;
-    //IMPORTANT
-    
     public void assignRSA(int x,int y,int z){
     	BigInteger min = BigInteger.valueOf(1);;
     	r = new Random();
@@ -35,10 +30,6 @@ public class RSA_Implementation
         }
         d = e.modInverse(phi);
         System.out.println("The following is the public key: "+e);
-        System.out.println("the following is the private key "+d);
- 
- 
-
-        
+        System.out.println("the following is the private key "+d);   
     }
 }
