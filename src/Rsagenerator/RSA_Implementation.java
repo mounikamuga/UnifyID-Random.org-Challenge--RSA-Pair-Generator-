@@ -10,6 +10,9 @@ public class RSA_Implementation
     private BigInteger d;
     private int        bitlength = 1024;
     private Random     r;
+    /*
+    We are now implementing the RSA Algorithm and computing the private as well as public keys
+    */
     public void assignRSA(int x,int y,int z){
     	BigInteger min = BigInteger.valueOf(1);;
     	r = new Random();
