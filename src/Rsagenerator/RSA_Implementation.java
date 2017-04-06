@@ -5,9 +5,6 @@ import java.math.BigInteger;
 import java.util.Random;
 public class RSA_Implementation
 {
-    private BigInteger p;
-    private BigInteger q;
-    private BigInteger N;
     private BigInteger phi;
     private BigInteger e;
     private BigInteger d;
@@ -19,7 +16,6 @@ public class RSA_Implementation
     	BigInteger p = BigInteger.valueOf(x);
     	BigInteger q = BigInteger.valueOf(y);
     	BigInteger e = BigInteger.valueOf(z);
-    	N = p.multiply(q);
         phi = p.subtract(BigInteger.ONE).multiply(q.subtract(BigInteger.ONE));
         
         e = BigInteger.probablePrime(bitlength / 2, r);
