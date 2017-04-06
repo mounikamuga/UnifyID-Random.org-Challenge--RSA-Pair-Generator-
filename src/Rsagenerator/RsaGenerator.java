@@ -1,0 +1,55 @@
+package Rsagenerator;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.Random;
+
+public class RsaGenerator {
+
+	public static void main(String args[]) throws IOException{
+	
+	URL url = new URL("https://www.random.org/integers/?num=30&min=20&max=789&col=1&base=10&format=plain&rnd=new");
+	HttpURLConnection http = (HttpURLConnection)url.openConnection();
+	http.setRequestMethod("GET");
+    BufferedReader rd = new BufferedReader(new InputStreamReader(http.getInputStream()));
+    String line;
+    int pr =0;
+    int passcount =0;
+    int[] pass = new int[3];
+    while (passcount < 2 && rd.readLine()!= null) {
+    	line = rd.readLine();
+        pr = Integer.parseInt(line);
+        if(isPrime(pr)){
+        	pass[passcount] = pr;
+        	passcount++;
+        }
+ 
+    }
+    rd.close();
+    int max = (pass[1]-1)*(pass[0]-1);
+    int min = 1;
+    max = Math.abs(max);
+    Random r = new Random();
+    int c_e = r.nextInt(max-min)+min;
+    while (c_e <= 0){
+    	c_e = r.nextInt(max-min)+min;
+    
+    }
+    pass[2] = c_e;
+    RSA_Implementation rsaI = new RSA_Implementation();
+    rsaI.assignRSA(pass[0],pass[1],pass[2]);
+ }
+
+	private static boolean isPrime(int pr) {		 
+	    if (pr%2==0) return false;
+	    for(int i=3;i*i<=pr;i+=2) {
+	        if(pr%i==0)
+	            return false;
+	    }
+	    return true;
+	}
+	}
+
